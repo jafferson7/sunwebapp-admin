@@ -60,6 +60,7 @@ class LoginViewController: UIViewController {
                 
                 if(loginData.id != "0") {
                     print("logging in \(loginData.name!)")
+                    UserDefaults.standard.set(loginData.name, forKey: "name")
                     self.performSegue(withIdentifier: "GoToAttd", sender: nil)
                 }
                 

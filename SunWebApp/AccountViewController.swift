@@ -9,11 +9,16 @@
 import UIKit
 
 class AccountViewController: UIViewController {
-
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(<#T##items: Any...##Any#>)
+        let userName = UserDefaults.standard.string(forKey: "name")
+        
+        nameLabel.text = "Hello \(userName!)"
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
 
