@@ -16,6 +16,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        if let root = UIApplication.sharedApplication().windows[0].rootViewController as? UINavigationController {
+            if CONDITION {
+                root.viewControllers = [USER_HOMEPAGE]
+            } else {
+                root.viewControllers = [USER_LOGIN]
+            }
+        }
+        
         return true
     }
 

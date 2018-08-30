@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  AttendanceViewController.swift
 //  SunWebApp
 //
 //  Created by Usmaan Jaffer on 8/30/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FirstViewController: UIViewController {
+class AttendanceViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

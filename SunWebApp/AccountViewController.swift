@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  AccountViewController.swift
 //  SunWebApp
 //
 //  Created by Usmaan Jaffer on 8/30/18.
@@ -8,10 +8,12 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class AccountViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print(<#T##items: Any...##Any#>)
         // Do any additional setup after loading the view, typically from a nib.
     }
 
