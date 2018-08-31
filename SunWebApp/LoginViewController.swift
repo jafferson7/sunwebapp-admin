@@ -16,7 +16,6 @@ class LoginViewController: UIViewController {
     
     let getTeacherURL = "https://www.sunwebapp.com/app/GetTeacherAndroid.php?Scode=sdf786ic&SchoolCode=demo&A=testa@sunwebapp.com&P=mateen"
     
-    
     struct loginResult: Codable {
         var id: String?
         var name: String?

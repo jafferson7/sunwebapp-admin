@@ -27,6 +27,11 @@ class AccountViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    @IBAction func logOutButton(_ sender: Any) {
+        print("logging out now")
+        UserDefaults.standard.removeObject(forKey: "name")
+        UserDefaults.standard.synchronize()
+    }
+    
 }
 
