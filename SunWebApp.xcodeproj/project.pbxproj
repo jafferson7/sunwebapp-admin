@@ -15,7 +15,7 @@
 		7C20838C2138507700171AC7 /* SunWebAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C20838B2138507700171AC7 /* SunWebAppTests.swift */; };
 		7C2083972138507700171AC7 /* SunWebAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2083962138507700171AC7 /* SunWebAppUITests.swift */; };
 		7C2083A52138517F00171AC7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2083A42138517F00171AC7 /* LoginViewController.swift */; };
-		7C67854D2138B3BD00FEBF73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C67854C2138B3BD00FEBF73 /* Assets.xcassets */; };
+		7CCE7BE5213B5966003FE6E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7CCE7BE4213B5966003FE6E0 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +50,7 @@
 		7C2083962138507700171AC7 /* SunWebAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunWebAppUITests.swift; sourceTree = "<group>"; };
 		7C2083982138507700171AC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C2083A42138517F00171AC7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		7C67854C2138B3BD00FEBF73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../.Trash/Assets.xcassets; sourceTree = "<group>"; };
+		7CCE7BE4213B5966003FE6E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,7 +106,7 @@
 				7C2083782138507600171AC7 /* AccountViewController.swift */,
 				7C20837A2138507600171AC7 /* Main.storyboard */,
 				7C2083A42138517F00171AC7 /* LoginViewController.swift */,
-				7C67854C2138B3BD00FEBF73 /* Assets.xcassets */,
+				7CCE7BE4213B5966003FE6E0 /* Assets.xcassets */,
 				7C20837F2138507700171AC7 /* LaunchScreen.storyboard */,
 				7C2083822138507700171AC7 /* Info.plist */,
 			);
@@ -236,7 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C2083812138507700171AC7 /* LaunchScreen.storyboard in Resources */,
-				7C67854D2138B3BD00FEBF73 /* Assets.xcassets in Resources */,
+				7CCE7BE5213B5966003FE6E0 /* Assets.xcassets in Resources */,
 				7C20837C2138507600171AC7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

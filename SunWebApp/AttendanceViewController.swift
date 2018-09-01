@@ -11,13 +11,13 @@ import UIKit
 class AttendanceViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return studentResult.name.count
+        return 3 // studentResult.name.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
-        let text = studentResult.name[indexPath.row]
+        let text = "hello" //studentResult.name[indexPath.row]
         
         cell.textLabel?.text = text
         
@@ -54,22 +54,6 @@ class AttendanceViewController: UIViewController, UITableViewDelegate, UITableVi
         private enum CodingKeys : String, CodingKey {
             case code
             case name
-        }
-    }
-    
-    let getStudentsURL = "https://www.sunwebapp.com/app/GetStdsAndroid.php?Scode=sdf786ic&SchoolCode=demo&CourseCode=A1G&W=1"
-    
-    var studentResult : StudentsArray!
-    
-    struct StudentsArray : Codable {
-        var id: [String?]
-        var name = [String?]()
-        var attd: [String?]
-        
-        private enum codingKeys : String, CodingKey {
-            case id
-            case name
-            case attd = "attendance"
         }
     }
     
@@ -163,6 +147,35 @@ class AttendanceViewController: UIViewController, UITableViewDelegate, UITableVi
             }.resume()
     }
     
+//    let getStudentsURL = "https://www.sunwebapp.com/app/GetStdsAndroid.php?Scode=sdf786ic&SchoolCode=demo&CourseCode=A1G&W=1"
+    let getStudentsURL = "https://www.sunwebapp.com/app/GetStdsAndroidTest.php?Scode=sdf786ic&SchoolCode=demo&CourseCode=A1G&W=1"
+
+    var studentResult : [Student] = []
+    
+    struct Student : Codable {
+        var id : String
+        var name : String
+        var attd : String
+        
+        private enum CodingKeys : String, CodingKey {
+            case id
+            case name
+            case attd
+        }
+    }
+    
+    struct StudentsArray : Codable {
+        var id: [String?]
+        var name = [String?]()
+        var attd: [String?]
+        
+        private enum codingKeys : String, CodingKey {
+            case id
+            case name
+            case attd = "attendance"
+        }
+    }
+    
     func getStudents() {
         // create url
         guard let url = URL(string: getStudentsURL) else {return}
@@ -178,13 +191,13 @@ class AttendanceViewController: UIViewController, UITableViewDelegate, UITableVi
             do {
                 
                 let decoder = JSONDecoder()
-                self.studentResult = try decoder.decode(StudentsArray.self, from: data)
+                self.studentResult = try decoder.decode([Student].self, from: data)
                 // print(result.name.count)
                 
 //                self.studentResult = true
                 
 //                self.something(weeksFinished: self.weekFinished, courseFinished: self.courseFinished)
-                print("\(self.studentResult.name[0] ?? "No name") with attendance \(self.studentResult.attd[0] ?? "No attd")")
+//                print("\(self.studentResult.name[0] ?? "No name") with attendance \(self.studentResult.attd[0] ?? "No attd")")
                 
                 DispatchQueue.main.async {
                     self.stdTable.reloadData()
