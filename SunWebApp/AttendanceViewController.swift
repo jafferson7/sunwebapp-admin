@@ -10,6 +10,10 @@ import UIKit
 
 class AttendanceViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return studentResult.count
     }
@@ -19,7 +23,7 @@ class AttendanceViewController: UIViewController, UITableViewDelegate, UITableVi
         
         let text = studentResult[indexPath.row].name + " (" +
             studentResult[indexPath.row].attd + ")" + " - " +
-            studentResult[indexPath.row].attd
+            studentResult[indexPath.row].newAttd
         
         cell.textLabel?.text = text
         
@@ -29,16 +33,26 @@ class AttendanceViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let cell = tableView.cellForRow(at: indexPath)
+//        print(cell?.textLabel)
         
-        let text = studentResult[indexPath.row].name + " (" +
-            studentResult[indexPath.row].attd + ")" + " - B"
+        self.studentResult[indexPath.row].newAttd = "hello"
         
-        cell?.textLabel?.text = text
+//        let text = studentResult[indexPath.row].name + " (" +
+//            studentResult[indexPath.row].attd + ")" + " - Z"
+        
+//        cell?.textLabel?.text = text
         print("Click!!")
         tableView.deselectRow(at: indexPath, animated: true)
+        self.stdTable.beginUpdates()
         DispatchQueue.main.async {
-            self.stdTable.reloadData()
+            self.stdTable.reloadRows(at: [indexPath], with: .automatic)
         }
+        self.stdTable.endUpdates()
+//        stdTable.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+//        DispatchQueue.main.async {
+//            self.stdTable.reloadData()
+//        }
+//        print(cell?.textLabel)
     }
     
     
@@ -173,6 +187,7 @@ class AttendanceViewController: UIViewController, UITableViewDelegate, UITableVi
         var id : String
         var name : String
         var attd : String
+        var newAttd : String = "B"
         
         private enum CodingKeys : String, CodingKey {
             case id
@@ -223,6 +238,5 @@ class AttendanceViewController: UIViewController, UITableViewDelegate, UITableVi
             
             }.resume()
     }
-    
 }
 
