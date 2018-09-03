@@ -35,20 +35,13 @@ class AttendanceViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-//        let cell = tableView.cellForRow(at: indexPath)
-//        print(cell?.textLabel)
+        
         var attdIndex = 0
         if studentResult[indexPath.row].newAttd != "NR" {
             attdIndex = (attdResult.name.index(of: studentResult[indexPath.row].newAttd)! + 1) % attdResult.name.count
         }
-//        print(attdIndex)
+        
         self.studentResult[indexPath.row].newAttd = attdResult.name[attdIndex]
-        
-//        let text = studentResult[indexPath.row].name + " (" +
-//            studentResult[indexPath.row].attd + ")" + " - Z"
-        
-//        cell?.textLabel?.text = text
         print("Click!!")
         tableView.deselectRow(at: indexPath, animated: true)
         self.stdTable.beginUpdates()
@@ -56,11 +49,6 @@ class AttendanceViewController: UIViewController, UITableViewDelegate, UITableVi
             self.stdTable.reloadRows(at: [indexPath], with: .automatic)
         }
         self.stdTable.endUpdates()
-//        stdTable.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
-//        DispatchQueue.main.async {
-//            self.stdTable.reloadData()
-//        }
-//        print(cell?.textLabel)
     }
     
     let getWeeksURL = "https://www.sunwebapp.com/app/GetWeeksAndroid.php?Scode=sdf786ic&SchoolCode=demo"
@@ -98,6 +86,36 @@ class AttendanceViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet weak var stdTable: UITableView!
     
+    @IBAction func saveAttd(_ sender: Any) {
+        print("Attempting to save the Attendance...")
+        var saveURL = "https://www.sunwebapp.com/app/SaveAttd.php?SchoolCode=" + "demo" //Demo&Ccode=A1G&W=1&count=1&s0=165&a0=A" // get the school code
+        saveURL += "&Ccode=" + "A1G" // get the coursecode
+        saveURL += "&W=" + "1" // get the week number
+        saveURL += "&count=" + String(describing: studentResult.count) // get the number of students
+        var counter : Int = 0
+        for student in studentResult {
+            saveURL += "&s" + String(describing: counter) + "=" + student.id
+            saveURL += "&a" + String(describing: counter) + "=" + student.newAttd
+            counter += 1
+        }
+        print(saveURL)
+        let url = URL(string: saveURL)!
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        URLSession.shared.getAllTasks { (openTasks: [URLSessionTask]) in
+            NSLog("open tasks: \(openTasks)")
+        }
+        
+        let task = URLSession.shared.dataTask(with: request, completionHandler: { (responseData: Data?, response: URLResponse?, error: Error?) in
+            NSLog("\(response)")
+        })
+        task.resume()
+        
+        getStudents()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -106,10 +124,7 @@ class AttendanceViewController: UIViewController, UITableViewDelegate, UITableVi
         stdTable.delegate = self
         
         getWeeks()
-        // print(weeksResult.name[0] ?? "no weeks")
         getCourses()
-        // print(courseResult.name[0] ?? "no courses available")
-//        getStudents()
         getAttdArray()
     }
     
@@ -202,18 +217,6 @@ class AttendanceViewController: UIViewController, UITableViewDelegate, UITableVi
             case id
             case name
             case attd
-        }
-    }
-    
-    struct StudentsArray : Codable {
-        var id: [String?]
-        var name = [String?]()
-        var attd: [String?]
-        
-        private enum codingKeys : String, CodingKey {
-            case id
-            case name
-            case attd = "attendance"
         }
     }
     

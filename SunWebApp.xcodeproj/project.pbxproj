@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C0EC5F4213DF48C00DF2AEE /* AttendanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0EC5F3213DF48C00DF2AEE /* AttendanceViewController.swift */; };
 		7C2083752138507600171AC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2083742138507600171AC7 /* AppDelegate.swift */; };
-		7C2083772138507600171AC7 /* AttendanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2083762138507600171AC7 /* AttendanceViewController.swift */; };
 		7C2083792138507600171AC7 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2083782138507600171AC7 /* AccountViewController.swift */; };
 		7C20837C2138507600171AC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C20837A2138507600171AC7 /* Main.storyboard */; };
 		7C2083812138507700171AC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C20837F2138507700171AC7 /* LaunchScreen.storyboard */; };
@@ -36,9 +36,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7C0EC5F3213DF48C00DF2AEE /* AttendanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendanceViewController.swift; sourceTree = "<group>"; };
 		7C2083712138507600171AC7 /* SunWebApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SunWebApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C2083742138507600171AC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7C2083762138507600171AC7 /* AttendanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceViewController.swift; sourceTree = "<group>"; };
 		7C2083782138507600171AC7 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		7C20837B2138507600171AC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7C2083802138507700171AC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -102,7 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				7C2083742138507600171AC7 /* AppDelegate.swift */,
-				7C2083762138507600171AC7 /* AttendanceViewController.swift */,
+				7C0EC5F3213DF48C00DF2AEE /* AttendanceViewController.swift */,
 				7C2083782138507600171AC7 /* AccountViewController.swift */,
 				7C20837A2138507600171AC7 /* Main.storyboard */,
 				7C2083A42138517F00171AC7 /* LoginViewController.swift */,
@@ -265,7 +265,7 @@
 				7C2083A52138517F00171AC7 /* LoginViewController.swift in Sources */,
 				7C2083792138507600171AC7 /* AccountViewController.swift in Sources */,
 				7C2083752138507600171AC7 /* AppDelegate.swift in Sources */,
-				7C2083772138507600171AC7 /* AttendanceViewController.swift in Sources */,
+				7C0EC5F4213DF48C00DF2AEE /* AttendanceViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
