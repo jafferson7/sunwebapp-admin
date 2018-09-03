@@ -21,6 +21,10 @@ class AttendanceViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
+        if studentResult[indexPath.row].newAttd == "NR" {
+            studentResult[indexPath.row].newAttd = studentResult[indexPath.row].attd
+        }
+        
         let text = studentResult[indexPath.row].name + " (" +
             studentResult[indexPath.row].attd + ")" + " - " +
             studentResult[indexPath.row].newAttd
@@ -32,10 +36,14 @@ class AttendanceViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let cell = tableView.cellForRow(at: indexPath)
+//        let cell = tableView.cellForRow(at: indexPath)
 //        print(cell?.textLabel)
-        
-        self.studentResult[indexPath.row].newAttd = "hello"
+        var attdIndex = 0
+        if studentResult[indexPath.row].newAttd != "NR" {
+            attdIndex = (attdResult.name.index(of: studentResult[indexPath.row].newAttd)! + 1) % attdResult.name.count
+        }
+//        print(attdIndex)
+        self.studentResult[indexPath.row].newAttd = attdResult.name[attdIndex]
         
 //        let text = studentResult[indexPath.row].name + " (" +
 //            studentResult[indexPath.row].attd + ")" + " - Z"
@@ -54,7 +62,6 @@ class AttendanceViewController: UIViewController, UITableViewDelegate, UITableVi
 //        }
 //        print(cell?.textLabel)
     }
-    
     
     let getWeeksURL = "https://www.sunwebapp.com/app/GetWeeksAndroid.php?Scode=sdf786ic&SchoolCode=demo"
     
@@ -77,6 +84,7 @@ class AttendanceViewController: UIViewController, UITableViewDelegate, UITableVi
     let getCoursesURL = "https://www.sunwebapp.com/app/GetCoursesAndroid.php?Scode=sdf786ic&SchoolCode=demo"
     
     var courseResult : coursesArray!
+    var attdResult : Attd!
     
     struct coursesArray: Codable {
         var code: [String?]
@@ -102,6 +110,7 @@ class AttendanceViewController: UIViewController, UITableViewDelegate, UITableVi
         getCourses()
         // print(courseResult.name[0] ?? "no courses available")
 //        getStudents()
+        getAttdArray()
     }
     
     override func didReceiveMemoryWarning() {
@@ -187,7 +196,7 @@ class AttendanceViewController: UIViewController, UITableViewDelegate, UITableVi
         var id : String
         var name : String
         var attd : String
-        var newAttd : String = "B"
+        var newAttd : String = "NR"
         
         private enum CodingKeys : String, CodingKey {
             case id
@@ -231,6 +240,42 @@ class AttendanceViewController: UIViewController, UITableViewDelegate, UITableVi
                 DispatchQueue.main.async {
                     self.stdTable.reloadData()
                 }
+                
+            } catch let jsonError {
+                print(jsonError)
+            }
+            
+            }.resume()
+    }
+    
+    let getAttdURL = "https://www.sunwebapp.com/app/GetAttdAndroid.php?SchoolCode=demo"
+    
+    struct Attd : Codable {
+        var name : [String]
+        
+        private enum CodingKeys : String, CodingKey {
+            case name
+        }
+    }
+    
+    func getAttdArray() {
+        // create the URL
+        guard let url = URL(string: getAttdURL) else {return}
+        
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if error != nil {
+                print(error!.localizedDescription)
+            }
+            
+            guard let data = data else { return }
+            
+            //Implement JSON decoding and parsing
+            do {
+                
+                let decoder = JSONDecoder()
+                self.attdResult = try decoder.decode(Attd.self, from: data)
+                
+                dump(self.attdResult.name)
                 
             } catch let jsonError {
                 print(jsonError)
