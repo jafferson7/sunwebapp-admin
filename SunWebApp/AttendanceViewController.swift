@@ -11,17 +11,34 @@ import UIKit
 class AttendanceViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3 // studentResult.name.count
+        return studentResult.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
-        let text = "hello" //studentResult.name[indexPath.row]
+        let text = studentResult[indexPath.row].name + " (" +
+            studentResult[indexPath.row].attd + ")" + " - " +
+            studentResult[indexPath.row].attd
         
         cell.textLabel?.text = text
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.cellForRow(at: indexPath)
+        
+        let text = studentResult[indexPath.row].name + " (" +
+            studentResult[indexPath.row].attd + ")" + " - B"
+        
+        cell?.textLabel?.text = text
+        print("Click!!")
+        tableView.deselectRow(at: indexPath, animated: true)
+        DispatchQueue.main.async {
+            self.stdTable.reloadData()
+        }
     }
     
     
@@ -148,7 +165,7 @@ class AttendanceViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
 //    let getStudentsURL = "https://www.sunwebapp.com/app/GetStdsAndroid.php?Scode=sdf786ic&SchoolCode=demo&CourseCode=A1G&W=1"
-    let getStudentsURL = "https://www.sunwebapp.com/app/GetStdsAndroidTest.php?Scode=sdf786ic&SchoolCode=demo&CourseCode=A1G&W=1"
+    let getStudentsURL = "https://www.sunwebapp.com/app/GetStdsiPhone.php?Scode=sdf786ic&SchoolCode=demo&CourseCode=A1G&W=1"
 
     var studentResult : [Student] = []
     
@@ -192,12 +209,9 @@ class AttendanceViewController: UIViewController, UITableViewDelegate, UITableVi
                 
                 let decoder = JSONDecoder()
                 self.studentResult = try decoder.decode([Student].self, from: data)
-                // print(result.name.count)
                 
-//                self.studentResult = true
-                
-//                self.something(weeksFinished: self.weekFinished, courseFinished: self.courseFinished)
-//                print("\(self.studentResult.name[0] ?? "No name") with attendance \(self.studentResult.attd[0] ?? "No attd")")
+                print(self.studentResult[2].name)
+                print(self.studentResult.count)
                 
                 DispatchQueue.main.async {
                     self.stdTable.reloadData()
