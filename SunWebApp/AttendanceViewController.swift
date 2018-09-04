@@ -9,10 +9,14 @@
 import UIKit
 
 class AttendanceViewController: UIViewController,
-UITableViewDelegate, UITableViewDataSource,
+    UITableViewDelegate, UITableViewDataSource,
 UIPickerViewDelegate, UIPickerViewDataSource {
     
     var schoolCode : String = ""
+    
+    var courseCode : String = ""
+    
+    var weekIdx : String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +66,14 @@ UIPickerViewDelegate, UIPickerViewDataSource {
         return "hello world"
     }
     
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView == coursePicker {
+            courseCode = courseResult[row].code
+        } else if pickerView == weekPicker {
+            weekIdx = String(describing: weeksResult[row].id)
+        }
+    }
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -75,7 +87,11 @@ UIPickerViewDelegate, UIPickerViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
         if studentResult[indexPath.row].newAttd == "NR" {
-            studentResult[indexPath.row].newAttd = studentResult[indexPath.row].attd
+            if studentResult[indexPath.row].attd == "NR" {
+                studentResult[indexPath.row].newAttd = attdResult.name[0]
+            } else {
+                studentResult[indexPath.row].newAttd = studentResult[indexPath.row].attd
+            }
         }
         
         let text = studentResult[indexPath.row].name + " (" +
@@ -110,54 +126,26 @@ UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet weak var stdTable: UITableView!
     
-    @IBAction func saveAttd() {
-        print("Attempting to save the Attendance...")
-        var saveURL = "https://www.sunwebapp.com/app/SaveAttd.php?SchoolCode=" + schoolCode // get the school code
-        saveURL += "&Ccode=" + "A1G" // get the coursecode
-        saveURL += "&W=" + "1" // get the week number
-        saveURL += "&count=" + String(describing: studentResult.count) // get the number of students
-        var counter : Int = 0
-        for student in studentResult {
-            saveURL += "&s" + String(describing: counter) + "=" + student.id
-            saveURL += "&a" + String(describing: counter) + "=" + student.newAttd
-            counter += 1
-        }
-        print(saveURL)
-        let url = URL(string: saveURL)!
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        
-        URLSession.shared.getAllTasks { (openTasks: [URLSessionTask]) in
-            NSLog("open tasks: \(openTasks)")
-        }
-        
-        let task = URLSession.shared.dataTask(with: request, completionHandler: { (responseData: Data?, response: URLResponse?, error: Error?) in
-            NSLog("\(String(describing: response))")
-        })
-        task.resume()
-        
-        getStudents()
-    }
-    
     @IBOutlet weak var coursePicker: UIPickerView!
     
     @IBOutlet weak var weekPicker: UIPickerView!
     
     @IBAction func selectCourseAndWeek() {
+        print(self.courseResult[self.coursePicker.selectedRow(inComponent: 0)].code)
+        print(self.weeksResult[self.weekPicker.selectedRow(inComponent: 0)].id)
         getStudents()
     }
     
     func something(weeksFinished: Bool, courseFinished: Bool) -> Void {
         if weeksFinished && courseFinished {
-            print(weeksResult[0].name)
-            print(courseResult[0].name)
-            getStudents()
             
             DispatchQueue.main.async {
                 self.coursePicker.reloadAllComponents()
                 self.weekPicker.reloadAllComponents()
             }
+            courseCode = courseResult[0].code
+            weekIdx = weeksResult[0].id
+            getStudents()
         }
     }
     
@@ -252,7 +240,7 @@ UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     var getStudentsURL = "https://www.sunwebapp.com/app/GetStdsiPhone.php?Scode=sdf786ic&SchoolCode=" // demo&CourseCode=A1G&W=1"
-
+    
     var studentResult : [Student] = []
     
     struct Student : Codable {
@@ -270,12 +258,17 @@ UIPickerViewDelegate, UIPickerViewDataSource {
     
     func getStudents() {
         // create url
-        DispatchQueue.main.async {
-            self.getStudentsURL += self.schoolCode + "&CourseCode="
-                + self.courseResult[self.coursePicker.selectedRow(inComponent: 0)].code
-                + "&W=" + self.weeksResult[self.weekPicker.selectedRow(inComponent: 0)].id
-        }
+        print("starting to get the students")
+//        print(courseCode)
+//        print(weekIdx)
+//        DispatchQueue.main.async {
+            self.getStudentsURL += self.schoolCode
+                + "&CourseCode=" + courseCode //self.courseResult[self.coursePicker.selectedRow(inComponent: 0)].code
+                + "&W=" + weekIdx //self.weeksResult[self.weekPicker.selectedRow(inComponent: 0)].id
+//        }
+        print(getStudentsURL)
         guard let url = URL(string: getStudentsURL) else {return}
+        getStudentsURL = "https://www.sunwebapp.com/app/GetStdsiPhone.php?Scode=sdf786ic&SchoolCode=" // reset url
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if error != nil {
@@ -289,9 +282,6 @@ UIPickerViewDelegate, UIPickerViewDataSource {
                 
                 let decoder = JSONDecoder()
                 self.studentResult = try decoder.decode([Student].self, from: data)
-                
-                print(self.studentResult[2].name)
-                print(self.studentResult.count)
                 
                 DispatchQueue.main.async {
                     self.stdTable.reloadData()
@@ -334,6 +324,66 @@ UIPickerViewDelegate, UIPickerViewDataSource {
                 self.attdResult = try decoder.decode(Attd.self, from: data)
                 
                 dump(self.attdResult.name)
+                
+            } catch let jsonError {
+                print(jsonError)
+            }
+            
+            }.resume()
+    }
+    
+    struct savedAttd : Codable {
+        var Sid : String
+        var flag : Bool
+        
+        private enum CodingKeys : String, CodingKey {
+            case Sid
+            case flag
+        }
+    }
+    
+    @IBAction func saveAttd() {
+        print("Attempting to save the Attendance...")
+        var saveURL = "https://www.sunwebapp.com/app/SaveAttdiPhone.php?SchoolCode=" + schoolCode // get the school code
+        saveURL += "&Ccode=" + self.courseResult[self.coursePicker.selectedRow(inComponent: 0)].code
+            + "&W=" + self.weeksResult[self.weekPicker.selectedRow(inComponent: 0)].id
+        saveURL += "&count=" + String(describing: studentResult.count) // get the number of students
+        var counter : Int = 0
+        for student in studentResult {
+            saveURL += "&s" + String(describing: counter) + "=" + student.id
+            saveURL += "&a" + String(describing: counter) + "=" + student.newAttd
+            counter += 1
+        }
+        print(saveURL)
+        
+        guard let url = URL(string: saveURL) else {return}
+        
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if error != nil {
+                print(error!.localizedDescription)
+            }
+            
+            guard let data = data else { return }
+            
+            //Implement JSON decoding and parsing
+            do {
+                
+                let decoder = JSONDecoder()
+                let result = try decoder.decode([savedAttd].self, from: data)
+                
+                dump(result)
+                
+                var success : Bool = true;
+                
+                for i in result {
+                    if !i.flag {
+                        success = i.flag
+                    }
+                }
+                
+                if success {
+                    self.getStudents()
+                }
                 
             } catch let jsonError {
                 print(jsonError)
