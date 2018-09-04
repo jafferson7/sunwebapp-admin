@@ -12,24 +12,47 @@ class AttendanceViewController: UIViewController,
 UITableViewDelegate, UITableViewDataSource,
 UIPickerViewDelegate, UIPickerViewDataSource {
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        
+        stdTable.dataSource = self
+        stdTable.delegate = self
+        
+        coursePicker.dataSource = self
+        coursePicker.delegate = self
+        
+        weekPicker.dataSource = self
+        weekPicker.delegate = self
+        
+        getWeeks()
+        getCourses()
+        getAttdArray()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView == coursePicker {
-            return courseResult.count //2 //courseResult.name.count == nil ? 0 : courseResult.name.count
+            return courseResult.count
         } else if pickerView == weekPicker {
-            return weeksResult.count //1 //weeksResult.name.count
+            return weeksResult.count
         }
         return 0
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView == coursePicker {
-            return courseResult[row].code //"courses"
+            return courseResult[row].code
         } else if pickerView == weekPicker {
-            return weeksResult[row].name //"weeks"
+            return weeksResult[row].name
         }
         return "hello world"
     }
@@ -84,7 +107,7 @@ UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBAction func saveAttd() {
         print("Attempting to save the Attendance...")
-        var saveURL = "https://www.sunwebapp.com/app/SaveAttd.php?SchoolCode=" + "demo" //Demo&Ccode=A1G&W=1&count=1&s0=165&a0=A" // get the school code
+        var saveURL = "https://www.sunwebapp.com/app/SaveAttd.php?SchoolCode=" + "demo" // get the school code
         saveURL += "&Ccode=" + "A1G" // get the coursecode
         saveURL += "&W=" + "1" // get the week number
         saveURL += "&count=" + String(describing: studentResult.count) // get the number of students
@@ -120,35 +143,12 @@ UIPickerViewDelegate, UIPickerViewDataSource {
         getStudents()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        stdTable.dataSource = self
-        stdTable.delegate = self
-        
-        coursePicker.dataSource = self
-        coursePicker.delegate = self
-        
-        weekPicker.dataSource = self
-        weekPicker.delegate = self
-        
-        getWeeks()
-        getCourses()
-        getAttdArray()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func something(weeksFinished: Bool, courseFinished: Bool) -> Void {
         if weeksFinished && courseFinished {
             print(weeksResult[0].name)
             print(courseResult[0].name)
             getStudents()
-//            self.stdTable.reloadData()
+            
             DispatchQueue.main.async {
                 self.coursePicker.reloadAllComponents()
                 self.weekPicker.reloadAllComponents()
@@ -158,22 +158,11 @@ UIPickerViewDelegate, UIPickerViewDataSource {
     
     let getWeeksURL = "https://www.sunwebapp.com/app/GetWeeksiPhone.php?Scode=sdf786ic&SchoolCode=demo"
     
-//    var weeksResult : weeksArray!
     var weeksResult : [Week] = []
     
     struct Week : Codable {
         var id : String
         var name : String
-        
-        private enum CodingKeys : String, CodingKey {
-            case id
-            case name
-        }
-    }
-    
-    struct weeksArray: Codable {
-        var id: [String?]
-        var name: [String?]
         
         private enum CodingKeys : String, CodingKey {
             case id
@@ -211,25 +200,13 @@ UIPickerViewDelegate, UIPickerViewDataSource {
             }.resume()
     }
     
-//    let getCoursesURL = "https://www.sunwebapp.com/app/GetCoursesAndroid.php?Scode=sdf786ic&SchoolCode=demo"
     let getCoursesURL = "https://www.sunwebapp.com/app/GetCoursesiPhone.php?Scode=sdf786ic&SchoolCode=demo"
     
-//    var courseResult : coursesArray!
     var courseResult : [Course] = []
     
     struct Course : Codable {
         var code: String
         var name: String
-        
-        private enum CodingKeys : String, CodingKey {
-            case code
-            case name
-        }
-    }
-    
-    struct coursesArray: Codable {
-        var code: [String?]
-        var name: [String?]
         
         private enum CodingKeys : String, CodingKey {
             case code
@@ -267,7 +244,6 @@ UIPickerViewDelegate, UIPickerViewDataSource {
             }.resume()
     }
     
-//    let getStudentsURL = "https://www.sunwebapp.com/app/GetStdsAndroid.php?Scode=sdf786ic&SchoolCode=demo&CourseCode=A1G&W=1"
     let getStudentsURL = "https://www.sunwebapp.com/app/GetStdsiPhone.php?Scode=sdf786ic&SchoolCode=demo&CourseCode=A1G&W=1"
 
     var studentResult : [Student] = []
