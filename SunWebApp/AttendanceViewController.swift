@@ -8,7 +8,32 @@
 
 import UIKit
 
-class AttendanceViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class AttendanceViewController: UIViewController,
+UITableViewDelegate, UITableViewDataSource,
+UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if pickerView == coursePicker {
+            return courseResult.count //2 //courseResult.name.count == nil ? 0 : courseResult.name.count
+        } else if pickerView == weekPicker {
+            return weeksResult.count //1 //weeksResult.name.count
+        }
+        return 0
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if pickerView == coursePicker {
+            return courseResult[row].code //"courses"
+        } else if pickerView == weekPicker {
+            return weeksResult[row].name //"weeks"
+        }
+        return "hello world"
+    }
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -51,42 +76,13 @@ class AttendanceViewController: UIViewController, UITableViewDelegate, UITableVi
         self.stdTable.endUpdates()
     }
     
-    let getWeeksURL = "https://www.sunwebapp.com/app/GetWeeksAndroid.php?Scode=sdf786ic&SchoolCode=demo"
-    
-    var weeksResult : weeksArray!
-    
     var weekFinished : Bool = false
     
     var courseFinished : Bool = false
     
-    struct weeksArray: Codable {
-        var id: [String?]
-        var name: [String?]
-        
-        private enum CodingKeys : String, CodingKey {
-            case id
-            case name
-        }
-    }
-    
-    let getCoursesURL = "https://www.sunwebapp.com/app/GetCoursesAndroid.php?Scode=sdf786ic&SchoolCode=demo"
-    
-    var courseResult : coursesArray!
-    var attdResult : Attd!
-    
-    struct coursesArray: Codable {
-        var code: [String?]
-        var name: [String?]
-        
-        private enum CodingKeys : String, CodingKey {
-            case code
-            case name
-        }
-    }
-    
     @IBOutlet weak var stdTable: UITableView!
     
-    @IBAction func saveAttd(_ sender: Any) {
+    @IBAction func saveAttd() {
         print("Attempting to save the Attendance...")
         var saveURL = "https://www.sunwebapp.com/app/SaveAttd.php?SchoolCode=" + "demo" //Demo&Ccode=A1G&W=1&count=1&s0=165&a0=A" // get the school code
         saveURL += "&Ccode=" + "A1G" // get the coursecode
@@ -109,10 +105,18 @@ class AttendanceViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         
         let task = URLSession.shared.dataTask(with: request, completionHandler: { (responseData: Data?, response: URLResponse?, error: Error?) in
-            NSLog("\(response)")
+            NSLog("\(String(describing: response))")
         })
         task.resume()
         
+        getStudents()
+    }
+    
+    @IBOutlet weak var coursePicker: UIPickerView!
+    
+    @IBOutlet weak var weekPicker: UIPickerView!
+    
+    @IBAction func selectCourseAndWeek() {
         getStudents()
     }
     
@@ -122,6 +126,12 @@ class AttendanceViewController: UIViewController, UITableViewDelegate, UITableVi
         
         stdTable.dataSource = self
         stdTable.delegate = self
+        
+        coursePicker.dataSource = self
+        coursePicker.delegate = self
+        
+        weekPicker.dataSource = self
+        weekPicker.delegate = self
         
         getWeeks()
         getCourses()
@@ -135,10 +145,39 @@ class AttendanceViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func something(weeksFinished: Bool, courseFinished: Bool) -> Void {
         if weeksFinished && courseFinished {
-            print(weeksResult.name[0] ?? "NA")
-            print(courseResult.name[0] ?? "nA")
+            print(weeksResult[0].name)
+            print(courseResult[0].name)
             getStudents()
 //            self.stdTable.reloadData()
+            DispatchQueue.main.async {
+                self.coursePicker.reloadAllComponents()
+                self.weekPicker.reloadAllComponents()
+            }
+        }
+    }
+    
+    let getWeeksURL = "https://www.sunwebapp.com/app/GetWeeksiPhone.php?Scode=sdf786ic&SchoolCode=demo"
+    
+//    var weeksResult : weeksArray!
+    var weeksResult : [Week] = []
+    
+    struct Week : Codable {
+        var id : String
+        var name : String
+        
+        private enum CodingKeys : String, CodingKey {
+            case id
+            case name
+        }
+    }
+    
+    struct weeksArray: Codable {
+        var id: [String?]
+        var name: [String?]
+        
+        private enum CodingKeys : String, CodingKey {
+            case id
+            case name
         }
     }
     
@@ -158,7 +197,7 @@ class AttendanceViewController: UIViewController, UITableViewDelegate, UITableVi
             do {
                 
                 let decoder = JSONDecoder()
-                self.weeksResult = try decoder.decode(weeksArray.self, from: data)
+                self.weeksResult = try decoder.decode([Week].self, from: data)
                 // print(result.name.count)
                 
                 self.weekFinished = true
@@ -170,6 +209,32 @@ class AttendanceViewController: UIViewController, UITableViewDelegate, UITableVi
             }
             
             }.resume()
+    }
+    
+//    let getCoursesURL = "https://www.sunwebapp.com/app/GetCoursesAndroid.php?Scode=sdf786ic&SchoolCode=demo"
+    let getCoursesURL = "https://www.sunwebapp.com/app/GetCoursesiPhone.php?Scode=sdf786ic&SchoolCode=demo"
+    
+//    var courseResult : coursesArray!
+    var courseResult : [Course] = []
+    
+    struct Course : Codable {
+        var code: String
+        var name: String
+        
+        private enum CodingKeys : String, CodingKey {
+            case code
+            case name
+        }
+    }
+    
+    struct coursesArray: Codable {
+        var code: [String?]
+        var name: [String?]
+        
+        private enum CodingKeys : String, CodingKey {
+            case code
+            case name
+        }
     }
     
     func getCourses() {
@@ -188,7 +253,7 @@ class AttendanceViewController: UIViewController, UITableViewDelegate, UITableVi
             do {
                 
                 let decoder = JSONDecoder()
-                self.courseResult = try decoder.decode(coursesArray.self, from: data)
+                self.courseResult = try decoder.decode([Course].self, from: data)
                 // print(result.name.count)
                 
                 self.courseFinished = true
@@ -252,6 +317,8 @@ class AttendanceViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     let getAttdURL = "https://www.sunwebapp.com/app/GetAttdAndroid.php?SchoolCode=demo"
+    
+    var attdResult : Attd!
     
     struct Attd : Codable {
         var name : [String]
