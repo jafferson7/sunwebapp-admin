@@ -10,11 +10,17 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
+    @IBOutlet weak var schoolCodeTextField: UITextField!
+    
+    @IBOutlet weak var emailTextField: UITextField!
+    
+    @IBOutlet weak var passwordTextField: UITextField!
+    
     // https://www.sunwebapp.com/app/GetTeacherA.php?Scode=sdf786ic&SchoolCode=demo&A=testa@sunwebapp.com&P=mateen
     
     // https://gist.github.com/kobeumut/b06015646aa0d5f072bfe14e499690ef
     
-    let getTeacherURL = "https://www.sunwebapp.com/app/GetTeacherAndroid.php?Scode=sdf786ic&SchoolCode=demo&A=testa@sunwebapp.com&P=mateen"
+    var getTeacherURL = "https://www.sunwebapp.com/app/GetTeacherAndroid.php?Scode=sdf786ic&SchoolCode=demo&A=testa@sunwebapp.com&P=mateen"
     
     struct loginResult: Codable {
         var id: String?
@@ -30,7 +36,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-//         getJsonFromUrl()
+        //         getJsonFromUrl()
     }
     
     override func didReceiveMemoryWarning() {
@@ -41,7 +47,12 @@ class LoginViewController: UIViewController {
     @IBAction func getJsonFromUrl() {
         
         // create url
+//        getTeacherURL += (schoolCodeTextField.text ?? "demo")
+//        getTeacherURL += "&A=" + (emailTextField.text ?? "testa@sunwebapp.com")
+//        getTeacherURL += "&P=" + (passwordTextField.text ?? "mateen")
+//        print(getTeacherURL)
         guard let url = URL(string: getTeacherURL) else {return}
+        getTeacherURL = "https://www.sunwebapp.com/app/GetTeacherAndroid.php?Scode=sdf786ic&SchoolCode="
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if error != nil {
@@ -58,9 +69,15 @@ class LoginViewController: UIViewController {
                 print(loginData.name ?? "NO NAME")
                 
                 if(loginData.id != "0") {
-                    print("logging in \(loginData.name!)")
                     UserDefaults.standard.set(loginData.name, forKey: "name")
-                    self.performSegue(withIdentifier: "GoToAttd", sender: nil)
+                    UserDefaults.standard.set("demo", forKey: "schoolCode")
+//                    DispatchQueue.main.async {
+//                        UserDefaults.standard.set(self.schoolCodeTextField.text, forKey: "schoolCode")
+//                    }
+                    print("logging in \(loginData.name!)")
+                    OperationQueue.main.addOperation {
+                        self.performSegue(withIdentifier: "GoToAttd", sender: nil)
+                    }
                 }
                 
             } catch let jsonError {

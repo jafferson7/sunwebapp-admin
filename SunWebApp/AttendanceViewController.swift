@@ -12,6 +12,8 @@ class AttendanceViewController: UIViewController,
 UITableViewDelegate, UITableViewDataSource,
 UIPickerViewDelegate, UIPickerViewDataSource {
     
+    var schoolCode : String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -24,6 +26,9 @@ UIPickerViewDelegate, UIPickerViewDataSource {
         
         weekPicker.dataSource = self
         weekPicker.delegate = self
+        
+        schoolCode = UserDefaults.standard.string(forKey: "schoolCode")!
+        print(schoolCode)
         
         getWeeks()
         getCourses()
@@ -107,7 +112,7 @@ UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBAction func saveAttd() {
         print("Attempting to save the Attendance...")
-        var saveURL = "https://www.sunwebapp.com/app/SaveAttd.php?SchoolCode=" + "demo" // get the school code
+        var saveURL = "https://www.sunwebapp.com/app/SaveAttd.php?SchoolCode=" + schoolCode // get the school code
         saveURL += "&Ccode=" + "A1G" // get the coursecode
         saveURL += "&W=" + "1" // get the week number
         saveURL += "&count=" + String(describing: studentResult.count) // get the number of students
@@ -156,7 +161,7 @@ UIPickerViewDelegate, UIPickerViewDataSource {
         }
     }
     
-    let getWeeksURL = "https://www.sunwebapp.com/app/GetWeeksiPhone.php?Scode=sdf786ic&SchoolCode=demo"
+    var getWeeksURL = "https://www.sunwebapp.com/app/GetWeeksiPhone.php?Scode=sdf786ic&SchoolCode=" //demo"
     
     var weeksResult : [Week] = []
     
@@ -173,6 +178,7 @@ UIPickerViewDelegate, UIPickerViewDataSource {
     func getWeeks() {
         
         // create url
+        getWeeksURL += schoolCode
         guard let url = URL(string: getWeeksURL) else {return}
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -200,7 +206,7 @@ UIPickerViewDelegate, UIPickerViewDataSource {
             }.resume()
     }
     
-    let getCoursesURL = "https://www.sunwebapp.com/app/GetCoursesiPhone.php?Scode=sdf786ic&SchoolCode=demo"
+    var getCoursesURL = "https://www.sunwebapp.com/app/GetCoursesiPhone.php?Scode=sdf786ic&SchoolCode=" //demo"
     
     var courseResult : [Course] = []
     
@@ -217,6 +223,7 @@ UIPickerViewDelegate, UIPickerViewDataSource {
     func getCourses() {
         
         // create url
+        getCoursesURL += schoolCode
         guard let url = URL(string: getCoursesURL) else {return}
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -244,7 +251,7 @@ UIPickerViewDelegate, UIPickerViewDataSource {
             }.resume()
     }
     
-    let getStudentsURL = "https://www.sunwebapp.com/app/GetStdsiPhone.php?Scode=sdf786ic&SchoolCode=demo&CourseCode=A1G&W=1"
+    var getStudentsURL = "https://www.sunwebapp.com/app/GetStdsiPhone.php?Scode=sdf786ic&SchoolCode=" // demo&CourseCode=A1G&W=1"
 
     var studentResult : [Student] = []
     
@@ -263,6 +270,11 @@ UIPickerViewDelegate, UIPickerViewDataSource {
     
     func getStudents() {
         // create url
+        DispatchQueue.main.async {
+            self.getStudentsURL += self.schoolCode + "&CourseCode="
+                + self.courseResult[self.coursePicker.selectedRow(inComponent: 0)].code
+                + "&W=" + self.weeksResult[self.weekPicker.selectedRow(inComponent: 0)].id
+        }
         guard let url = URL(string: getStudentsURL) else {return}
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
