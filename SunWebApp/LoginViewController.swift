@@ -70,7 +70,9 @@ class LoginViewController: UIViewController {
                 
                 if(loginData.id != "0") {
                     UserDefaults.standard.set(loginData.name, forKey: "name")
-                    UserDefaults.standard.set("demo", forKey: "schoolCode")
+//                    UserDefaults.standard.set("demo", forKey: "schoolCode")
+                    
+                    UserDefaults.standard.set("alsalam", forKey: "schoolCode")
 //                    DispatchQueue.main.async {
 //                        UserDefaults.standard.set(self.schoolCodeTextField.text, forKey: "schoolCode")
 //                    }

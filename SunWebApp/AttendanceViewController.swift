@@ -259,15 +259,13 @@ UIPickerViewDelegate, UIPickerViewDataSource {
     func getStudents() {
         // create url
         print("starting to get the students")
-//        print(courseCode)
-//        print(weekIdx)
-//        DispatchQueue.main.async {
             self.getStudentsURL += self.schoolCode
                 + "&CourseCode=" + courseCode //self.courseResult[self.coursePicker.selectedRow(inComponent: 0)].code
                 + "&W=" + weekIdx //self.weeksResult[self.weekPicker.selectedRow(inComponent: 0)].id
-//        }
-        print(getStudentsURL)
-        guard let url = URL(string: getStudentsURL) else {return}
+        let escapedString = getStudentsURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+//        print(escapedString)
+        guard let url = URL(string: escapedString) else {return}
+//        print(url)
         getStudentsURL = "https://www.sunwebapp.com/app/GetStdsiPhone.php?Scode=sdf786ic&SchoolCode=" // reset url
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
