@@ -352,6 +352,7 @@ UIPickerViewDelegate, UIPickerViewDataSource {
             saveURL += "&a" + String(describing: counter) + "=" + student.newAttd
             counter += 1
         }
+        saveURL = saveURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         print(saveURL)
         
         guard let url = URL(string: saveURL) else {return}
