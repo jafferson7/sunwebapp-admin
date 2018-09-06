@@ -20,7 +20,7 @@ class LoginViewController: UIViewController {
     
     // https://gist.github.com/kobeumut/b06015646aa0d5f072bfe14e499690ef
     
-    var getTeacherURL = "https://www.sunwebapp.com/app/GetTeacherAndroid.php?Scode=sdf786ic&SchoolCode=demo&A=testa@sunwebapp.com&P=mateen"
+    var getTeacherURL = "https://www.sunwebapp.com/app/GetTeacherAndroid.php?Scode=sdf786ic&SchoolCode="//demo&A=testa@sunwebapp.com&P=mateen"
     
     struct loginResult: Codable {
         var id: String?
@@ -47,10 +47,10 @@ class LoginViewController: UIViewController {
     @IBAction func getJsonFromUrl() {
         
         // create url
-//        getTeacherURL += (schoolCodeTextField.text ?? "demo")
-//        getTeacherURL += "&A=" + (emailTextField.text ?? "testa@sunwebapp.com")
-//        getTeacherURL += "&P=" + (passwordTextField.text ?? "mateen")
-//        print(getTeacherURL)
+        getTeacherURL += (schoolCodeTextField.text ?? "demo")
+        getTeacherURL += "&A=" + (emailTextField.text ?? "testa@sunwebapp.com")
+        getTeacherURL += "&P=" + (passwordTextField.text ?? "mateen")
+        print(getTeacherURL)
         guard let url = URL(string: getTeacherURL) else {return}
         getTeacherURL = "https://www.sunwebapp.com/app/GetTeacherAndroid.php?Scode=sdf786ic&SchoolCode="
         
@@ -72,7 +72,7 @@ class LoginViewController: UIViewController {
                     UserDefaults.standard.set(loginData.name, forKey: "name")
 //                    UserDefaults.standard.set("demo", forKey: "schoolCode")
                     
-                    UserDefaults.standard.set("alsalam", forKey: "schoolCode")
+                    UserDefaults.standard.set(self.schoolCodeTextField.text, forKey: "schoolCode")
 //                    DispatchQueue.main.async {
 //                        UserDefaults.standard.set(self.schoolCodeTextField.text, forKey: "schoolCode")
 //                    }
