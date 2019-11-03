@@ -14,6 +14,8 @@ UIPickerViewDelegate, UIPickerViewDataSource {
     
     var schoolCode : String = ""
     
+    var teacherCode : String = ""
+    
     var courseCode : String = ""
     
     var weekIdx : String = ""
@@ -32,6 +34,7 @@ UIPickerViewDelegate, UIPickerViewDataSource {
         weekPicker.delegate = self
         
         schoolCode = UserDefaults.standard.string(forKey: "schoolCode")!
+        teacherCode = UserDefaults.standard.string(forKey: "id")!
         print(schoolCode)
         
         getWeeks()
@@ -212,6 +215,7 @@ UIPickerViewDelegate, UIPickerViewDataSource {
         
         // create url
         getCoursesURL += schoolCode
+        getCoursesURL += "&Tid=" + teacherCode
         guard let url = URL(string: getCoursesURL) else {return}
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -220,7 +224,7 @@ UIPickerViewDelegate, UIPickerViewDataSource {
             }
             
             guard let data = data else { return }
-            
+            print(url)
             //Implement JSON decoding and parsing
             do {
                 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D0405F82145E6FA002A55C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D0405F72145E6FA002A55C0 /* Assets.xcassets */; };
 		7C0EC5F4213DF48C00DF2AEE /* AttendanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0EC5F3213DF48C00DF2AEE /* AttendanceViewController.swift */; };
 		7C2083752138507600171AC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2083742138507600171AC7 /* AppDelegate.swift */; };
 		7C2083792138507600171AC7 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2083782138507600171AC7 /* AccountViewController.swift */; };
@@ -15,7 +16,6 @@
 		7C20838C2138507700171AC7 /* SunWebAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C20838B2138507700171AC7 /* SunWebAppTests.swift */; };
 		7C2083972138507700171AC7 /* SunWebAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2083962138507700171AC7 /* SunWebAppUITests.swift */; };
 		7C2083A52138517F00171AC7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2083A42138517F00171AC7 /* LoginViewController.swift */; };
-		7CC55171213C2B4100292A1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7CC55170213C2B4100292A1A /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5D0405F72145E6FA002A55C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7C0EC5F3213DF48C00DF2AEE /* AttendanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendanceViewController.swift; sourceTree = "<group>"; };
 		7C2083712138507600171AC7 /* SunWebApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SunWebApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C2083742138507600171AC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -50,7 +51,6 @@
 		7C2083962138507700171AC7 /* SunWebAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunWebAppUITests.swift; sourceTree = "<group>"; };
 		7C2083982138507700171AC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C2083A42138517F00171AC7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		7CC55170213C2B4100292A1A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,8 +106,8 @@
 				7C2083782138507600171AC7 /* AccountViewController.swift */,
 				7C20837A2138507600171AC7 /* Main.storyboard */,
 				7C2083A42138517F00171AC7 /* LoginViewController.swift */,
-				7CC55170213C2B4100292A1A /* Assets.xcassets */,
 				7C20837F2138507700171AC7 /* LaunchScreen.storyboard */,
+				5D0405F72145E6FA002A55C0 /* Assets.xcassets */,
 				7C2083822138507700171AC7 /* Info.plist */,
 			);
 			path = SunWebApp;
@@ -195,7 +195,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0940;
-				ORGANIZATIONNAME = "Usmaan Jaffer";
+				ORGANIZATIONNAME = "Jafferson Software";
 				TargetAttributes = {
 					7C2083702138507600171AC7 = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -236,7 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C2083812138507700171AC7 /* LaunchScreen.storyboard in Resources */,
-				7CC55171213C2B4100292A1A /* Assets.xcassets in Resources */,
+				5D0405F82145E6FA002A55C0 /* Assets.xcassets in Resources */,
 				7C20837C2138507600171AC7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -437,36 +437,50 @@
 		7C20839C2138507700171AC7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N8RCZ987YN;
 				INFOPLIST_FILE = SunWebApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = SunWebApp.SunWebApp;
+				PRODUCT_BUNDLE_IDENTIFIER = SunWeb;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		7C20839D2138507700171AC7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N8RCZ987YN;
 				INFOPLIST_FILE = SunWebApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = SunWebApp.SunWebApp;
+				PRODUCT_BUNDLE_IDENTIFIER = SunWeb;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

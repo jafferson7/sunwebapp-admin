@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SunWebApp/LoginViewController.swift"
+            timestampString = "592690024.154614"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "getJsonFromUrl()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SunWebApp/LoginViewController.swift"
+            timestampString = "592690024.155683"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
+            landmarkName = "getJsonFromUrl()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SunWebApp/LoginViewController.swift"
+            timestampString = "592690024.156554"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "getJsonFromUrl()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SunWebApp/AttendanceViewController.swift"
+            timestampString = "563853497.795284"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "229"
+            endingLineNumber = "229"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SunWebApp/AttendanceViewController.swift"
+            timestampString = "563853497.795647"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
+            landmarkName = "unknown"
+            landmarkType = "0">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SunWebApp.AttendanceViewController.getCoursesURL.getter : Swift.String"
+                  moduleName = "SunWebApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nabeela/Documents/jafferson-stc/iPhoneApps/SunWebApp/SunWebApp/AttendanceViewController.swift"
+                  timestampString = "563851113.521264"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "200"
+                  endingLineNumber = "200"
+                  offsetFromSymbolStart = "123">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SunWebApp.AttendanceViewController.getCoursesURL.setter : Swift.String"
+                  moduleName = "SunWebApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nabeela/Documents/jafferson-stc/iPhoneApps/SunWebApp/SunWebApp/AttendanceViewController.swift"
+                  timestampString = "563851113.524052"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "200"
+                  endingLineNumber = "200"
+                  offsetFromSymbolStart = "137">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SunWebApp.AttendanceViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; SunWebApp.AttendanceViewController"
+                  moduleName = "SunWebApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nabeela/Documents/jafferson-stc/iPhoneApps/SunWebApp/SunWebApp/AttendanceViewController.swift"
+                  timestampString = "563851113.526669"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "200"
+                  endingLineNumber = "200"
+                  offsetFromSymbolStart = "1532">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SunWebApp.AttendanceViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;SunWebApp.AttendanceViewController&gt;"
+                  moduleName = "SunWebApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nabeela/Documents/jafferson-stc/iPhoneApps/SunWebApp/SunWebApp/AttendanceViewController.swift"
+                  timestampString = "563851113.529158"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "200"
+                  endingLineNumber = "200"
+                  offsetFromSymbolStart = "1498">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SunWebApp/AttendanceViewController.swift"
+            timestampString = "563853497.7958519"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
+            landmarkName = "unknown"
+            landmarkType = "0">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SunWebApp.AttendanceViewController.courseResult.getter : Swift.Array&lt;SunWebApp.AttendanceViewController.Course&gt;"
+                  moduleName = "SunWebApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nabeela/Documents/jafferson-stc/iPhoneApps/SunWebApp/SunWebApp/AttendanceViewController.swift"
+                  timestampString = "563851113.538166"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "202"
+                  endingLineNumber = "202"
+                  offsetFromSymbolStart = "114">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SunWebApp.AttendanceViewController.courseResult.setter : Swift.Array&lt;SunWebApp.AttendanceViewController.Course&gt;"
+                  moduleName = "SunWebApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nabeela/Documents/jafferson-stc/iPhoneApps/SunWebApp/SunWebApp/AttendanceViewController.swift"
+                  timestampString = "563851113.540141"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "202"
+                  endingLineNumber = "202"
+                  offsetFromSymbolStart = "128">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SunWebApp.AttendanceViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; SunWebApp.AttendanceViewController"
+                  moduleName = "SunWebApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nabeela/Documents/jafferson-stc/iPhoneApps/SunWebApp/SunWebApp/AttendanceViewController.swift"
+                  timestampString = "563851113.542343"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "202"
+                  endingLineNumber = "202"
+                  offsetFromSymbolStart = "1688">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SunWebApp.AttendanceViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;SunWebApp.AttendanceViewController&gt;"
+                  moduleName = "SunWebApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nabeela/Documents/jafferson-stc/iPhoneApps/SunWebApp/SunWebApp/AttendanceViewController.swift"
+                  timestampString = "563851113.54486"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "202"
+                  endingLineNumber = "202"
+                  offsetFromSymbolStart = "1654">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SunWebApp/LoginViewController.swift"
+            timestampString = "592690024.157496"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "125"
+            endingLineNumber = "125">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SunWebApp/LoginViewController.swift"
+            timestampString = "592690024.158205"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "125"
+            endingLineNumber = "125">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SunWebApp/LoginViewController.swift"
+            timestampString = "592690024.158906"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "textFieldShouldReturn(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SunWebApp/LoginViewController.swift"
+            timestampString = "592690024.159801"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "textFieldShouldReturn(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SunWebApp/LoginViewController.swift"
+            timestampString = "592690024.160569"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "textFieldShouldReturn(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SunWebApp/LoginViewController.swift"
+            timestampString = "592690024.161387"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "LoginViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SunWebApp.LoginViewController.getTeacherURL.getter : Swift.String"
+                  moduleName = "SunWebApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nabeela/Documents/jafferson-stc/iPhoneApps/SunWebApp/SunWebApp/LoginViewController.swift"
+                  timestampString = "592681144.883094"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "123">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SunWebApp.LoginViewController.getTeacherURL.setter : Swift.String"
+                  moduleName = "SunWebApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nabeela/Documents/jafferson-stc/iPhoneApps/SunWebApp/SunWebApp/LoginViewController.swift"
+                  timestampString = "592681144.887084"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "137">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SunWebApp.LoginViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; SunWebApp.LoginViewController"
+                  moduleName = "SunWebApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nabeela/Documents/jafferson-stc/iPhoneApps/SunWebApp/SunWebApp/LoginViewController.swift"
+                  timestampString = "592681144.891489"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "485">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SunWebApp.LoginViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;SunWebApp.LoginViewController&gt;"
+                  moduleName = "SunWebApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nabeela/Documents/jafferson-stc/iPhoneApps/SunWebApp/SunWebApp/LoginViewController.swift"
+                  timestampString = "592681144.894973"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "456">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
